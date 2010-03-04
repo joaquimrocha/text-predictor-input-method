@@ -43,7 +43,7 @@ fi
 AC_SUBST(LIBPRESAGE)
 
 AC_ARG_VAR([GTK_QUERY_IMMODULES], [path to gtk-query-immodules-2.0 utility])
-AC_CHECK_PROGS([GTK_QUERY_IMMODULES], [gtk-query-immodules-2.0])
+AC_CHECK_PROGS([GTK_QUERY_IMMODULES], [gtk-query-immodules-2.0 gtk-query-immodules-2.0-32])
 
 PREDICTOR_ARG_WITH_IMMODULES_DIR()
 

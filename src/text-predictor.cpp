@@ -118,6 +118,7 @@ text_predictor_new (void)
   TextPredictor *tp = g_new0 (TextPredictor, 1);
   tp->callback = new PredictCallback((gchar *) "", -1);
   tp->presage = new Presage(tp->callback);
+  return tp;
 }
 
 static gchar *
