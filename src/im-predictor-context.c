@@ -426,20 +426,25 @@ gtk_predictor_im_filter_keypress (GtkIMContext *context,
   }
   else if (event->type == GDK_KEY_PRESS)
   {
+    gboolean may_change_candidate = (event->state &
+				     CHANGE_CANDIDATE_STATE) != 0 ||
+                                    CHANGE_CANDIDATE_STATE == 0;
+
     if (event->keyval == ACCEPT_CANDIDATE_KEY &&
-	(event->state & ACCEPT_CANDIDATE_STATE) != 0)
+	((event->state & ACCEPT_CANDIDATE_STATE) != 0 ||
+	 ACCEPT_CANDIDATE_STATE == 0))
     {
       accept_candidate (self);
       return TRUE;
     }
     else if (event->keyval == NEXT_CANDIDATE_KEY &&
-	     (event->state & CHANGE_CANDIDATE_STATE) != 0)
+	     may_change_candidate)
     {
       next_candidate (self);
       return TRUE;
     }
     else if (event->keyval == PREVIOUS_CANDIDATE_KEY &&
-	     (event->state & CHANGE_CANDIDATE_STATE) != 0)
+	     may_change_candidate)
     {
       previous_candidate (self);
       return TRUE;
